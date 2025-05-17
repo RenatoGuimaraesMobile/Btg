@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Btg.Views.ClienteFormPage"
+             BackgroundColor="#01226A"
+             Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="btgp.png" WidthRequest="200" Margin="0,20,0,0" Grid.Column="1" />
+
+            <BoxView BackgroundColor="#8A9CBF" Grid.Row="1" Grid.Column="1" CornerRadius="20" MaximumHeightRequest="470"/>
+            <VerticalStackLayout Spacing="10" Grid.Row="1" Grid.Column="1" Padding="20" MaximumHeightRequest="470">
+                <Label Text="Nome" />
+                <Entry Text="{Binding Cliente.Name}" Placeholder="Digite o nome" BackgroundColor="White"/>
+
+                <Label Text="Sobrenome" />
+                <Entry Text="{Binding Cliente.Lastname}" Placeholder="Digite o sobrenome"  BackgroundColor="White"/>
+
+                <Label Text="Idade" />
+                <Entry Text="{Binding IdadeTexto}" Keyboard="Numeric" Placeholder="Digite a idade" BackgroundColor="White" />
+
+                <Label Text="Endereço" />
+                <Entry Text="{Binding Cliente.Address}" Placeholder="Digite o endereço" BackgroundColor="White" />
+
+                <Label Text="{Binding ErrorMessage}" 
+           TextColor="Red" 
+           FontAttributes="Bold" 
+           IsVisible="{Binding HasError}" 
+           HorizontalOptions="Center" />
+
+                <Grid ColumnSpacing="5" Margin="0,20,0,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Cancelar" Command="{Binding CancelarCommand}"  BackgroundColor="#021F59" TextColor="White"/>
+                    <Button Text="Salvar" Command="{Binding SalvarCommand}" Grid.Column="1"  BackgroundColor="#0167F0" TextColor="White" />
+                </Grid>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+    
+    
+</ContentPage>

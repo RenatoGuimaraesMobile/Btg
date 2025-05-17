@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Btg.MainPage"
+             xmlns:viewModel="clr-namespace:Btg.ViewModels"
+             xmlns:models="clr-namespace:Btg.Models"
+             x:DataType="viewModel:MainViewModel"
+             BackgroundColor="#01226A"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Margin="50,0,50,50" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Image Source="btgp.png" WidthRequest="200" Margin="0,20,0,50" VerticalOptions="Center" />
+
+        <BoxView BackgroundColor="White" CornerRadius="20" Grid.Row="1" Grid.RowSpan="2" />
+        <StackLayout Grid.Row="1">
+            <Grid Padding="10" BackgroundColor="#ECECEC">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Nome" Grid.Column="0" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+                <Label Text="Sobrenome" Grid.Column="1" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+                <Label Text="Idade" Grid.Column="2" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+                <Label Text="Endereço" Grid.Column="3" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+                <Label Text="" Grid.Column="4" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+                <Label Text="" Grid.Column="5" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+            </Grid>
+            <CollectionView ItemsSource="{Binding Clientes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Cliente">
+                        <Grid BackgroundColor="White" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Name}" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding Lastname}" Grid.Column="1" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding Age}" Grid.Column="2" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+                            <Label Text="{Binding Address}" Grid.Column="3" TextColor="Black" VerticalTextAlignment="Center" HorizontalOptions="Center" />
+
+                            <Button Text="Editar" Grid.Column="4" Margin="2" FontSize="12"  BackgroundColor="#646E8C"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=EditarCommand}"
+                            CommandParameter="{Binding .}" />
+
+                            <Button Text="Excluir" Grid.Column="5" Margin="2" FontSize="12" BackgroundColor="#FF1818"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=ExcluirCommand}"
+                            CommandParameter="{Binding .}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+
+        <Button Text="Adicionar Cliente"
+            Command="{Binding AdicionarCommand}"
+            BackgroundColor="#0167F0"
+            TextColor="White"
+            FontAttributes="Bold"
+            Grid.Row="2"
+            CornerRadius="10"/>
+    </Grid>
+
+</ContentPage>
