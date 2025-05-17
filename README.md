@@ -48,7 +48,8 @@ Este projeto foi desenvolvido como parte do processo seletivo técnico do **BTG 
 ---
 
 ## 🖼️ Print da Aplicação
-
+![Home](./screenshot.png)
+![Tela Adicional](./screenshot1.png)
 
 
 
